@@ -1,21 +1,19 @@
 import { Checkbox } from "@/components/ui/checkbox";
 
 interface CheckboxFilterProps {
-  title: string;
   options: string[];
   selectedValues?: string[];
   onOptionChange?: (option: string, checked: boolean) => void;
 }
 
 export default function CheckboxFilter({
-  title,
   options,
   selectedValues = [],
   onOptionChange,
 }: CheckboxFilterProps) {
   return (
     <div className="space-y-2">
-      <h3 className="text-sm font-semibold text-slate-800">{title}</h3>
+
 
       {options.map((option) => (
         <label
