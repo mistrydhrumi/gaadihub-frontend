@@ -24,6 +24,7 @@ export async function getCars(filters?: {
   registrationYearMax?: number;
   kmMin?: number;
   kmMax?: number;
+  searchQuery?: string;
 }) {
   let query = supabase.from("cars").select("*");
 
@@ -33,6 +34,12 @@ export async function getCars(filters?: {
 
   if (filters?.maxPrice && filters.maxPrice > 0) {
     query = query.lte("discount_price", filters.maxPrice);
+  }
+
+  if (filters?.searchQuery?.trim()) {
+    const term = `%${filters.searchQuery.trim()}%`;
+
+    query = query.or(`brand.ilike.${term},model.ilike.${term},variant.ilike.${term}`);
   }
 
   if (filters?.brand?.length) {
