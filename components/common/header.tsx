@@ -2,6 +2,7 @@
 
 import Headerlink from "./headerlink";
 import  { Search } from "../ui/search";
+import { Suspense } from "react";
 
 export default function Header() {
     return (
@@ -25,7 +26,9 @@ export default function Header() {
 
                 {/* Right Side (empty for balance) */}
                 <div>
-                    <Search/>
+                    <Suspense  fallback={null}>
+                        <Search/>
+                    </Suspense>
                 </div>
 
             </div>

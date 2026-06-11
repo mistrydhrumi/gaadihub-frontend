@@ -179,7 +179,6 @@ export default function Filters() {
           </AccordionTrigger>
           <AccordionContent className="pt-4 space-y-5">
             <RangeFilter
-              title="Price Range"
               min={100000}
               max={5000000}
               value={getRangeValue(
@@ -315,7 +314,6 @@ export default function Filters() {
           </AccordionTrigger>
           <AccordionContent className="pt-3">
             <RangeFilter
-              title="Registration Year"
               min={2015}
               max={2025}
               value={getRangeValue(
@@ -337,7 +335,6 @@ export default function Filters() {
           </AccordionTrigger>
           <AccordionContent className="pt-3">
             <RangeFilter
-              title="Kilometer Driven"
               min={0}
               max={1500000}
               value={getRangeValue("kmMin", "kmMax", 0, 1500000)}

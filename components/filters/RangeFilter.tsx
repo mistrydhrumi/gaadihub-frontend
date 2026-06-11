@@ -1,7 +1,7 @@
 import { Slider } from "@/components/ui/slider";
 
 interface RangeFilterProps {
-  title: string;
+
   min: number;
   max: number;
   value?: number[];
@@ -9,7 +9,6 @@ interface RangeFilterProps {
 }
 
 export default function RangeFilter({
-  title,
   min,
   max,
   value,
@@ -19,8 +18,6 @@ export default function RangeFilter({
 
   return (
     <div className="space-y-2">
-      <h3 className="text-sm font-semibold text-slate-800">{title}</h3>
-
       <Slider
         value={currentValue}
         min={min}
