@@ -1,6 +1,7 @@
 import CarFilter from "@/components/cars/CarFilter";
 import CarList from "@/components/cars/CarList";
 import Header from "@/components/common/header";
+import { SortDropdown } from "@/components/sorting/SortDropdown";
 import { getCars } from "@/services/car.service";
 
 function toArray(value: string | string[] | undefined) {
@@ -23,7 +24,7 @@ export default async function Cars({
     registrationYearMax?: string;
     kmMin?: string;
     kmMax?: string;
-    q?: string;
+    sort?: string;
   }>;
 }) {
   const params = await searchParams;
@@ -51,7 +52,7 @@ export default async function Cars({
       : undefined,
     kmMin: Number.isFinite(kmMin) ? kmMin : undefined,
     kmMax: Number.isFinite(kmMax) ? kmMax : undefined,
-    searchQuery: params.q,
+    sort: params.sort,
   });
 
   return (
@@ -64,7 +65,21 @@ export default async function Cars({
             <CarFilter />
           </aside>
 
+
           <section className="col-span-9">
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <div className="flex-1 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white flex justify-center items-center gap-1">
+                💳 Used Car Loans Starting at{" "}
+                <span className="font-bold text-green-400">8.5%</span> Interest
+                <span className="mx-2 text-slate-500">|</span>
+                ⚡ Instant Approval Available
+                <span className="mx-2 text-slate-500">|</span>
+                🛡️ Trusted Dealers
+              </div>
+
+              <SortDropdown />
+            </div>
+
             <CarList cars={cars} />
           </section>
         </div>

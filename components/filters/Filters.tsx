@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import CheckboxFilter from "./CheckboxFilter";
 import RangeFilter from "./RangeFilter";
+import router from "next/router";
 
 export default function Filters() {
   const filterCardClass =
@@ -25,9 +26,10 @@ export default function Filters() {
     { label: "Above ₹10 Lakh", min: 1000000, max: 5000000 },
   ];
 
-  
-  const router = useRouter();
+
+
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const selectedPriceRanges = getSelectedValues("priceRange");
   const [filterOptions, setFilterOptions] = useState({
@@ -39,8 +41,16 @@ export default function Filters() {
   });
 
   useEffect(() => {
+    //when user refresh the page url is clear 
+    const navigation = performance.getEntriesByType(
+      "navigation"
+    )[0] as PerformanceNavigationTiming;
+
+    if (navigation?.type === "reload") {
+      router.replace("/cars");
+    }
     fetchFilterOptions();
-  }, []);
+  }, [router]);
 
   async function fetchFilterOptions() {
     const { data, error } = await supabase

@@ -6,8 +6,8 @@ import { Suspense } from "react";
 
 export default function Header() {
     return (
-        <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 shadow-sm backdrop-blur">
-            <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 md:h-18 md:px-6 lg:px-8">
+        <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 shadow-sm backdrop-blur ">
+            <div className=" mx-auto px-4 py-6  flex h-12  items-center gap-4  md:h-18 md:px-6 lg:px-8">
                 {/* Logo */}
                 <a href="/" className="flex shrink-0 items-center">
                     <img
@@ -24,10 +24,10 @@ export default function Header() {
                     </div>
                 </nav>
 
-                {/* Right Side (empty for balance) */}
-                <div>
-                    <Suspense  fallback={null}>
-                        <Search/>
+                {/* Right Side */}
+                <div className="ml-auto flex shrink-0 items-center">
+                    <Suspense fallback={null}>
+                        <Search />
                     </Suspense>
                 </div>
 
