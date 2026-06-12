@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/select";
 
 import { useRouter, useSearchParams } from "next/navigation";
-
+import { SORT_OPTIONS } from "./sort-options";
 
 export function SortDropdown() {
   const router = useRouter();
@@ -18,7 +18,9 @@ export function SortDropdown() {
   const currentSort =
     searchParams.get("sort") || "relevance";
 
-  const handleChange = (value: string) => {
+  const handleChange = (value: string | null) => {
+    if (!value) return;
+
     const params = new URLSearchParams(searchParams);
 
     params.set("sort", value);

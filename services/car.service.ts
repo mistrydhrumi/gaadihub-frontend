@@ -12,6 +12,7 @@ export async function getCarById(id: string) {
   return data;
 }
 
+
 export async function getCars(filters?: {
   minPrice?: number;
   maxPrice?: number;
@@ -25,7 +26,9 @@ export async function getCars(filters?: {
   kmMin?: number;
   kmMax?: number;
   searchQuery?: string;
+  sort?: string;
 }) {
+
   let query = supabase.from("cars").select("*");
 
   if (filters?.minPrice && filters.minPrice > 0) {
@@ -78,8 +81,44 @@ export async function getCars(filters?: {
     query = query.lte("km_driven", filters.kmMax);
   }
 
-  const { data, error } = await query;
+  switch (filters?.sort) {
+    case "price_asc":
+      query = query.order("discount_price", {
+        ascending: true,
+      });
+      break;
 
+    case "price_desc":
+      query = query.order("discount_price", {
+        ascending: false,
+      });
+      break;
+
+    case "newest":
+      query = query.order("registration_year", {
+        ascending: false,
+      });
+      break;
+
+    case "oldest":
+      query = query.order("registration_year", {
+        ascending: true,
+      });
+      break;
+
+    case "km_asc":
+      query = query.order("km_driven", {
+        ascending: true,
+      });
+      break;
+
+    default:
+      query = query.order("created_at", {
+        ascending: false,
+      });
+  }
+
+  const { data, error } = await query;
   if (error) throw error;
 
   return data;
