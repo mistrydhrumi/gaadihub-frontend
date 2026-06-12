@@ -23,7 +23,6 @@ export default async function Cars({
     registrationYearMax?: string;
     kmMin?: string;
     kmMax?: string;
-    q?: string;
   }>;
 }) {
   const params = await searchParams;
@@ -51,7 +50,6 @@ export default async function Cars({
       : undefined,
     kmMin: Number.isFinite(kmMin) ? kmMin : undefined,
     kmMax: Number.isFinite(kmMax) ? kmMax : undefined,
-    searchQuery: params.q,
   });
 
   return (

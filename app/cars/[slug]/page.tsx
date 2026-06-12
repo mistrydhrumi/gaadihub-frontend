@@ -12,6 +12,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Car } from "@/types/car";
 
+
 export default function CarDetailsPage() {
   const params = useParams();
   const id = params.slug as string;
