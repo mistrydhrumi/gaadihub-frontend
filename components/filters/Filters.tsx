@@ -11,12 +11,21 @@ import {
 } from "@/components/ui/accordion";
 import CheckboxFilter from "./CheckboxFilter";
 import RangeFilter from "./RangeFilter";
-import router from "next/router";
+// import {
+//   Sheet,
+//   SheetContent,
+//   SheetHeader,
+//   SheetTitle,
+//   SheetTrigger,
+// } from "@/components/ui/sheet";
+// import { SlidersHorizontal } from "lucide-react";
+
+
 
 export default function Filters() {
   const filterCardClass =
     "rounded-xl border border-slate-200 bg-white p-4 shadow-sm";
-
+  // const [open, setOpen] = useState(false);
   const priceRanges = [
     { label: "Under ₹2 Lakh", min: 0, max: 200000 },
     { label: "₹2 - ₹3 Lakh", min: 200000, max: 300000 },
@@ -163,7 +172,10 @@ export default function Filters() {
   }
 
   return (
-    <div className="space-y-4 rounded-xl p-3 border border-slate-200 bg-white shadow-sm scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100 h-[calc(100vh-80px)] overflow-y-auto fixed">
+
+    <div className="space-y-4 rounded-xl p-3 border border-slate-200 bg-white shadow-sm scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100 h-[calc(100vh-80px)] overflow-y-auto fixed  md:fixed
+  md:h-[calc(100vh-80px)]">
+
       <section className={filterCardClass}>
         <div className="flex items-start justify-between gap-3">
           <div>
