@@ -3,72 +3,72 @@ export const BRAND_OPTIONS = [
         label: "BYD",
         value: "byd",
         alt: "BYD cars",
-        img: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/byd-logo.jpg"
     },
     {
         label: "Honda",
         value: "honda",
         alt: "Honda cars",
-        img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/honda-logo.png"
     },
     {
         label: "Hyundai",
         value: "hyundai",
         alt: "Hyundai cars",
-        img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/hyundai-logo.png"
     },
     {
         label: "Kia",
         value: "kia",
         alt: "Kia cars",
-        img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/Kia-logo.jpg"
     },
     {
         label: "Mahindra",
         value: "mahindra",
         alt: "Mahindra cars",
-        img: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/Mahindra-logo.jpg"
     },
     {
         label: "Maruti Suzuki",
         value: "maruti_suzuki",
         alt: "Maruti Suzuki cars",
-        img: "https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/Suzuki-logo.jpg"
     },
     {
         label: "MG",
         value: "mg",
         alt: "MG cars",
-        img: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/MG-logo.png"
     },
     {
         label: "Renault",
         value: "renault",
         alt: "Renault cars",
-        img: "https://images.unsplash.com/photo-1590362891991-f776e747a588?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/Renault-logo.jpg"
     },
     {
         label: "Skoda",
         value: "skoda",
         alt: "Skoda cars",
-        img: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/skoda-logo.jpg"
     },
     {
         label: "Tata",
         value: "tata",
         alt: "Tata cars",
-        img: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/tata-logo.png"
     },
     {
         label: "Toyota",
         value: "toyota",
         alt: "Toyota cars",
-        img: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/toyota-logo-2020.png"
     },
     {
         label: "Volkswagen",
         value: "volkswagen",
         alt: "Volkswagen cars",
-        img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=1000"
+        img: "/brand/Volkswagen-logo.jpg"
     },
 ];

@@ -1,7 +1,10 @@
+import Header from "@/components/common/header";
+import Footer from "@/components/common/footer";
 export default function Compare() {
     return (
         <div>
-            <h1>Compare</h1>
+            <Header />
+            <Footer />
         </div>
     );
 }

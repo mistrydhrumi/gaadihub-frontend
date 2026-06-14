@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Car, Home, Search } from "lucide-react";
 import Header from "@/components/common/header";
+import Footer from "@/components/common/footer";
 
 export default function NotFound() {
   return (
@@ -54,6 +55,7 @@ export default function NotFound() {
         </div>
       </div>
     </div>
+    <Footer/>
     </>
   );
 }

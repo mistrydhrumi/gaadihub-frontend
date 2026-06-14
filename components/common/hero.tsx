@@ -35,7 +35,7 @@ export default function Hero() {
 
                         <div className="mt-8">
                             <Link href="/cars">
-                                <Button className="bg-slate-900 hover:bg-slate-700 rounded-full px-6 py-3 text-white font-medium text-lg">
+                                <Button className="bg-slate-900 hover:bg-slate-700 rounded-full px-6 py-3 text-white font-medium text-lg cursor-pointer">
                                     View All Cars
                                 </Button>
                             </Link>
