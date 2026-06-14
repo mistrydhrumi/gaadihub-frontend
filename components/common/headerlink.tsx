@@ -3,7 +3,7 @@ export default function Headerlink() {
     return (
         <>
             <Navlink href="/cars" name="Used Cars" />
-            <Navlink href="aboutus" name="About Us" />
+            <Navlink href="/compare" name="Compare" />
         </>
     );
 }
