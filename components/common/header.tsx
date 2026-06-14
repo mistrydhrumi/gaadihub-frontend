@@ -101,11 +101,11 @@ export default function Header() {
           </Link>
 
           <Link
-            href="/about"
+            href="/compare"
             onClick={() => setOpen(false)}
             className="border-b px-6 py-4 text-lg font-medium text-slate-700 hover:bg-slate-50"
           >
-            About Us
+            Compare
           </Link>
         </nav>
       </div>
