@@ -1,4 +1,3 @@
-// import Image from "next/image";
 import Link from "next/link";
 import {
     Card,
@@ -6,20 +5,19 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { MapPin } from "lucide-react";
 import { ThumbsUp } from "lucide-react";
 import { ThumbsDown } from "lucide-react";
 
 export default function CarCard({ car }: any) {
     return (
         <Link href={`/cars/${car.slug}`}>
-            <Card className="relative overflow-hidden cursor-pointer transition hover:shadow-lg">
+            <Card className="relative  overflow-hidden cursor-pointer transition hover:shadow-lg">
                 <img
                     src={car.images?.[0]}
                     alt={car.model}
                     width={500}
                     height={300}
-                    className="w-full h-52 object-cover border-b-gray-200"
+                    className="w-full h-52 object-cover border-b-gray-200 transition duration-300 hover:scale-105"
                 />
                 <Badge
                     variant="secondary"
@@ -29,7 +27,7 @@ export default function CarCard({ car }: any) {
                 </Badge>
                 <CardContent className="p-4">
                     <div className="flex flex-row items-start justify-between gap-3">
-                        <h3 className=" text-xl font-bold leading-tight text-slate-900 pb-2">
+                        <h3 className=" line-clamp-1 text-base sm:text-lg font-semibold">
                             {car.brand} {car.model}
                         </h3>
                         <div className="shrink-0 text-right overflow-hidden">
@@ -57,7 +55,7 @@ export default function CarCard({ car }: any) {
                     </div>
 
 
-                    <div className="mt-1 flex items-center gap-2 text-sm text-slate-600">
+                    <div className="mt-3 flex flex-wrap gap-2 text-sm text-slate-600">
                         <Badge variant="outline" className="text-xs rounded-full px-2.5 py-1">
                             {car.km_driven.toLocaleString()} kms
                         </Badge>
@@ -72,8 +70,11 @@ export default function CarCard({ car }: any) {
                         </Badge>
                     </div>
                     <div className="mt-3">
-                        <Button className="w-full bg-slate-900 text-white hover:">
+                        <Button className="h-11 w-full bg-slate-900 text-white cursor-pointer">
                             Book Now
+                        </Button>
+                        <Button variant="outline" className="w-full mt-2 gap-2">
+                            compare
                         </Button>
                     </div>
                     <div className="mt-4 flex items-center justify-between gap-2 pt-2 text-sm text-slate-500 border-t ">
