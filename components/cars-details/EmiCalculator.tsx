@@ -34,18 +34,18 @@ export default function EmiCalculator({ car }: { car: Car | null }) {
   if (!car) return null;
 
   return (
-    <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+    <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
       <div className="mb-4">
         <h2 className="text-xl font-semibold text-slate-900">EMI Calculator</h2>
         <p className="text-sm text-slate-500">
-          Estimated monthly EMI based on the car’s original price.
+          Estimated monthly EMI based on the car&apos;s original price.
         </p>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="rounded-3xl bg-slate-50 p-5">
+      <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr] lg:gap-6">
+        <div className="rounded-3xl bg-slate-50 p-4 sm:p-5">
           <p className="text-sm text-slate-500">Loan amount</p>
-          <p className="mt-1 text-3xl font-semibold text-slate-900">
+          <p className="mt-1 text-2xl font-semibold text-slate-900 sm:text-3xl">
             ₹{Number(car.original_price || 0).toLocaleString()}
           </p>
           <p className="mt-2 text-sm text-slate-500">
@@ -58,7 +58,7 @@ export default function EmiCalculator({ car }: { car: Car | null }) {
                 <p className="text-sm text-slate-500">Tenure</p>
                 <p className="text-xl font-semibold text-slate-900">{tenureMonths} months</p>
               </div>
-              <span className="rounded-full bg-emerald-50 px-3 py-1 text-sm text-emerald-700 ring-1 ring-emerald-200">
+              <span className="rounded-full bg-orange-50 px-3 py-1 text-sm text-orange-700 ring-1 ring-orange-200">
                 {Math.round(tenureMonths / 12)} years
               </span>
             </div>
@@ -72,13 +72,17 @@ export default function EmiCalculator({ car }: { car: Car | null }) {
                 onValueChange={(value) => setTenureMonths(Array.isArray(value) ? value[0] ?? 12 : value)}
                 className="w-full"
               />
+              <div className="mt-2 flex justify-between text-xs text-slate-400">
+                <span>12 months</span>
+                <span>60 months</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="rounded-3xl bg-slate-900 p-5 text-white">
+        <div className="rounded-3xl bg-slate-900 p-4 text-white sm:p-5">
           <p className="text-sm text-slate-300">EMI per month</p>
-          <p className="mt-2 text-4xl font-semibold">
+          <p className="mt-2 text-3xl font-semibold sm:text-4xl">
             ₹{emiDetails?.emi ? Math.round(emiDetails.emi).toLocaleString() : "0"}
           </p>
 
