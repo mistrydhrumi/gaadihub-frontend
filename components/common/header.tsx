@@ -36,9 +36,9 @@ export default function Header() {
 
           {/* Desktop Search - unchanged */}
           <div className="ml-auto hidden md:flex">
-            <Suspense fallback={null}>
+            {/* <Suspense fallback={null}> */}
               <Search />
-            </Suspense>
+            {/* </Suspense> */}
           </div>
 
           {/* Mobile Menu Button */}
