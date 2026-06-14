@@ -4,6 +4,11 @@ import Header from "@/components/common/header";
 import { SortDropdown } from "@/components/sorting/SortDropdown";
 import { getCars } from "@/services/car.service";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Used Cars",
+};
 function toArray(value: string | string[] | undefined) {
   if (Array.isArray(value)) return value.filter(Boolean);
   return value ? [value] : [];

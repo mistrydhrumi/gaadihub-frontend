@@ -1,4 +1,6 @@
-// import { BrandsList } from "@/components/common/brands-list";
+import { BrandsList } from "@/components/common/brands-list";
+import ElectricCarsSection from "@/components/common/ElectricCarsSection";
+import Footer from "@/components/common/footer";
 import Header from "@/components/common/header";
 import Hero from "@/components/common/hero";
 export default function Home() {
@@ -6,7 +8,9 @@ export default function Home() {
     <>
       <Header />
       <Hero />
-      {/* <BrandsList /> */}
+      <BrandsList />
+      <ElectricCarsSection/>
+      <Footer/>
     </>
   );
 }

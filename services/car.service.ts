@@ -12,6 +12,18 @@ export async function getCarById(id: string) {
   return data;
 }
 
+export async function getElectricCars(limit = 4) {
+  const { data, error } = await supabase
+    .from("cars")
+    .select("*")
+    .eq("fuel_type", "Electric")
+    .limit(limit);
+
+  if (error) throw error;
+
+  return data;
+}
+
 
 export async function getCars(filters?: {
   minPrice?: number;
