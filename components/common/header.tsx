@@ -36,9 +36,9 @@ export default function Header() {
 
           {/* Desktop Search - unchanged */}
           <div className="ml-auto hidden md:flex">
-            {/* <Suspense fallback={null}> */}
+            <Suspense fallback={null}>
               <Search />
-            {/* </Suspense> */}
+            </Suspense>
           </div>
 
           {/* Mobile Menu Button */}
@@ -69,9 +69,8 @@ export default function Header() {
 
       {/* Mobile Sidebar */}
       <div
-        className={`fixed top-0 right-0 z-50 h-screen w-72 bg-white shadow-xl transition-transform duration-300 md:hidden ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 z-50 h-screen w-72 bg-white shadow-xl transition-transform duration-300 md:hidden ${open ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Sidebar Header */}
         <div className="flex items-center justify-between border-b p-4">
