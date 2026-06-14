@@ -1,37 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GaadiHub 🚗
 
-## Getting Started
+Modern car marketplace platform built with Next.js, React, Supabase, and
+TailwindCSS — featuring a dynamic car listing experience, detailed car pages,
+an EMI calculator, and a fully responsive UI.
 
-First, run the development server:
+Live demo: [gaadihub-frontend.vercel.app](https://gaadihub-frontend.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- 🚗 Modern car marketplace platform
+- 🖼️ Dynamic car detail pages with image carousel
+- 💰 Built-in EMI calculator with adjustable loan tenure
+- 📋 Detailed overview, specifications & feature highlights per car
+- ⚡ Fast and optimized UI
+- 📱 Fully responsive design across mobile, tablet & desktop
+- 🧩 Reusable React components
+- 🌐 Supabase integration for car data
+- 💀 Skeleton loading states
+- 🎨 Modern UI/UX with shadcn/ui
+
+## Tech Stack
+
+| Feature             | Technology |
+|---------------------|------------|
+| Frontend Framework  | Next.js 16 / React 19 |
+| Styling             | TailwindCSS v4 |
+| UI Components       | shadcn/ui |
+| Backend / Data      | Supabase |
+| State Management    | React Hooks |
+| Carousel            | Embla Carousel |
+| Icons               | lucide-react |
+| Deployment          | Vercel |
+
+## Project Structure
+
+```
+├── app/
+│   ├── about-us/
+│   ├── cars/
+│   │   ├── [slug]/
+│   │   │   ├── page.tsx
+│
+├── components/
+│   ├── common/
+│   │   ├── header.tsx
+│   │   ├── footer.tsx
+│   ├── cars-details/
+│   │   ├── CarImageCarousel.tsx
+│   │   ├── CarOverview.jsx
+│   │   ├── CarFeatures.tsx
+│   │   ├── CarSpecifications.tsx
+│   │   ├── CarPriceCard.tsx
+│   │   ├── EmiCalculator.tsx
+│   ├── ui/
+│
+├── services/
+│   ├── car.service.ts
+│
+├── types/
+│   ├── car.ts
+│
+├── lib/
+├── public/
+├── app.tsx
+├── next.config.ts
+├── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Clone Repository**
+```bash
+git clone https://github.com/mistrydhrumi/gaadihub-frontend.git
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Move Into Project Directory**
+```bash
+cd gaadihub-frontend
+```
 
-## Learn More
+**Install Dependencies**
+```bash
+pnpm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+**Run Development Server**
+```bash
+pnpm dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Runs locally on: `http://localhost:3000`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Production Build
 
-## Deploy on Vercel
+**Build Project**
+```bash
+pnpm build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Start Production Server**
+```bash
+pnpm start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# gaadihub-frontend
+## Core Features
+
+### Car Listings & Details
+
+Displays detailed information for each vehicle, including:
+
+- Brand & Model
+- Variant
+- Price (original & discounted)
+- KM Driven
+- Fuel Type
+- Transmission
+- Ownership
+- Registration Year
+- Seats
+- Registration Location
+
+### Car Detail Page Sections
+
+- **Image Carousel** – swipeable gallery with photo count
+- **Overview** – key details with icon-based cards
+- **Features** – highlight badges pulled from car data
+- **Specifications** – engine, power, mileage, seats & fuel type
+- **Price Card** – pricing, discount percentage & contact actions
+- **EMI Calculator** – interactive loan tenure slider with monthly EMI, total payable & total interest
+
+### Performance Optimizations
+
+- Lazy rendering of images
+- Skeleton loaders while data is fetched
+- Responsive image handling
+- Reusable component structure
+- Optimized Supabase data fetching
+
+## Development Guidelines
+
+- Create a new branch from `main` for each feature/fix
+- Pull the latest changes before starting work
+- Maintain a reusable, modular component structure
+- Follow clean and scalable coding practices
+- Keep the UI responsive across all devices
+- Run `pnpm lint` before committing changes
