@@ -4,8 +4,11 @@ Modern car marketplace platform built with Next.js, React, Supabase, and
 TailwindCSS — featuring a dynamic car listing experience, detailed car pages,
 an EMI calculator, and a fully responsive UI.
 
-Live demo: [gaadihub-frontend.vercel.app](https://gaadihub-frontend.vercel.app)
+Live demo: [gaadihub-frontend.vercel.app](https://gaadihub-frontend.vercel.app)<br/>
 Video link : [https://drive.google.com/drive/folders/1cyVFhLqui77Bhzj7pA8hCp22skW3E0aC?usp=drive_link](https://drive.google.com/drive/folders/1cyVFhLqui77Bhzj7pA8hCp22skW3E0aC?usp=drive_link)
+
+## Architecture Diagram
+<img width="1024" height="1536" alt="Architecture Diagram" src="https://github.com/user-attachments/assets/91bdcb3f-9422-4be6-a89c-f5c061b09aad" />
 
 ## Features
 
