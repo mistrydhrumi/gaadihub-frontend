@@ -5,6 +5,7 @@ TailwindCSS — featuring a dynamic car listing experience, detailed car pages,
 an EMI calculator, and a fully responsive UI.
 
 Live demo: [gaadihub-frontend.vercel.app](https://gaadihub-frontend.vercel.app)
+Video link : https://drive.google.com/drive/folders/1cyVFhLqui77Bhzj7pA8hCp22skW3E0aC?usp=drive_link
 
 ## Features
 
