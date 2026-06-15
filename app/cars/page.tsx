@@ -47,8 +47,8 @@ export default function Cars() {
         }
         const minPrice = searchParams.get("minPrice");
         const maxPrice = searchParams.get("maxPrice");
-        if (minPrice) query = query.gte("price", Number(minPrice));
-        if (maxPrice) query = query.lte("price", Number(maxPrice));
+        if (minPrice) query = query.gte("original_price", Number(minPrice));
+        if (maxPrice) query = query.lte("original_price", Number(maxPrice));
 
         const brands = searchParams.getAll("brand");
         if (brands.length) query = query.in("brand", brands);
@@ -76,8 +76,8 @@ export default function Cars() {
         if (kmMax) query = query.lte("km_driven", Number(kmMax));
 
         const sort = searchParams.get("sort");
-        if (sort === "price_asc") query = query.order("price", { ascending: true });
-        else if (sort === "price_desc") query = query.order("price", { ascending: false });
+        if (sort === "price_asc") query = query.order("original_price", { ascending: true });
+        else if (sort === "price_desc") query = query.order("original_price", { ascending: false });
         else if (sort === "year_desc") query = query.order("registration_year", { ascending: false });
         else if (sort === "km_asc") query = query.order("km_driven", { ascending: true });
         else query = query.order("created_at", { ascending: false }); // default: newest
