@@ -72,23 +72,23 @@ export default async function ElectricCarsSection() {
                                     </Badge>
                                 </div>
 
-                                <Button variant="default" className="w-full gap-2 bg-blue-900 hover:bg-blue-700">
-                                    <Link href={`/cars/${car.slug}`}>
-                                        View Details
-                                    </Link>
 
-                                </Button>
-                                <Button variant="outline" className="w-full gap-2">
-                                    <Link href="/compare">
+                                <Link href={`/cars/${car.slug}`} className="pb-2">
+                                    <Button variant="default" className="w-full gap-2 bg-blue-900 hover:bg-blue-900 cursor-pointer ">
+                                        View Details
+                                    </Button>
+                                </Link>
+                                <Link href="/compare">
+                                    <Button variant="outline" className="w-full gap-2 cursor-pointer mt-2">
                                         Compare
-                                    </Link>
-                                </Button>
+                                    </Button>
+                                </Link>
                             </CardContent>
                         </Card>
                     </Link>
                 ))}
             </div>
 
-    </section>
+        </section>
     );
 }

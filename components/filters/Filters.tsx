@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { SlidersHorizontal, X } from "lucide-react";
 import { supabase } from "@/lib/supabase";
@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/accordion";
 import CheckboxFilter from "./CheckboxFilter";
 import RangeFilter from "./RangeFilter";
-
 
 const PRICE_RANGES = [
   { label: "Under ₹2 Lakh", min: 0, max: 200000 },
@@ -34,7 +33,6 @@ const ALL_ACCORDION_ITEMS = [
   "kilometer-driven",
 ];
 
-
 interface FilterOptions {
   brand: string[];
   fuelType: string[];
@@ -50,7 +48,6 @@ const EMPTY_OPTIONS: FilterOptions = {
   bodyType: [],
   ownership: [],
 };
-
 
 function getSelectedValues(params: URLSearchParams, key: string): string[] {
   return params.getAll(key);
@@ -77,7 +74,6 @@ function formatPrice(value: number) {
   return `₹${value.toLocaleString("en-IN")}`;
 }
 
-
 function FilterSection({
   value,
   label,
@@ -100,7 +96,6 @@ function FilterSection({
   );
 }
 
-/** Title bar with "Clear all" button */
 function FilterHeader({
   hasActiveFilters,
   onClear,
@@ -113,7 +108,7 @@ function FilterHeader({
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-[11px] uppercase tracking-[0.24em] text-slate-500">
-            Find your  car
+            Find your car
           </p>
           <h2 className="text-lg font-semibold text-slate-900">Filters</h2>
         </div>
@@ -219,7 +214,7 @@ function MobileFilterDrawer({
       />
 
       {/* Panel */}
-      <div className="absolute bottom-0 left-0 right-0 top-0 flex max-h-full flex-col bg-slate-50 sm:right-auto sm:w-[380px]">
+      <div className="absolute bottom-0 left-0 right-0 top-0 flex max-h-full flex-col bg-slate-50 sm:right-auto sm:w-[380px] animate-in slide-in-from-left duration-300">
         {/* Drawer header */}
         <div className="flex shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 py-3">
           <h2 className="text-base font-semibold text-slate-900">Filters</h2>
@@ -249,25 +244,32 @@ function MobileFilterDrawer({
   );
 }
 
-//  Main Component 
-
 export default function Filters() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [filterOptions, setFilterOptions] =
-    useState<FilterOptions>(EMPTY_OPTIONS);
+  const [filterOptions, setFilterOptions] = useState<FilterOptions>(EMPTY_OPTIONS);
 
-  // Clear stale params on hard reload
+  // Clean component lifecycle tracking
+  const isMounted = useRef(true);
+
+  // Clear stale params on hard reload & fetch filter metadata
   useEffect(() => {
-    const nav = performance.getEntriesByType(
-      "navigation"
-    )[0] as PerformanceNavigationTiming;
-    if (nav?.type === "reload") router.replace("/cars");
+    isMounted.current = true;
+
+    const nav = performance.getEntriesByType("navigation")[0] as PerformanceNavigationTiming;
+    if (nav?.type === "reload") {
+      router.replace("/cars");
+    }
+
     fetchFilterOptions();
+
+    return () => {
+      isMounted.current = false;
+    };
   }, [router]);
 
-  // Allow the inline mobile trigger button to open this drawer
+  // Handle mobile drawer trigger custom event safely
   useEffect(() => {
     const handler = () => setDrawerOpen(true);
     window.addEventListener("open-filter-drawer", handler);
@@ -275,29 +277,34 @@ export default function Filters() {
   }, []);
 
   async function fetchFilterOptions() {
-    const { data, error } = await supabase
-      .from("cars")
-      .select("brand, fuel_type, transmission, body_type, ownership");
+    try {
+      const { data, error } = await supabase
+        .from("cars")
+        .select("brand, fuel_type, transmission, body_type, ownership");
 
-    if (error) {
-      console.error("Failed to load filters:", error);
-      return;
+      if (error) {
+        console.error("Failed to load filters:", error);
+        return;
+      }
+
+      if (!isMounted.current) return; // Prevent state updates on unmounted component
+
+      const unique = (values: (string | null | undefined)[]) =>
+        Array.from(new Set(values.filter(Boolean) as string[])).sort((a, b) =>
+          a.localeCompare(b)
+        );
+
+      setFilterOptions({
+        brand: unique(data?.map((d) => d.brand) ?? []),
+        fuelType: unique(data?.map((d) => d.fuel_type) ?? []),
+        transmission: unique(data?.map((d) => d.transmission) ?? []),
+        bodyType: unique(data?.map((d) => d.body_type) ?? []),
+        ownership: unique(data?.map((d) => d.ownership) ?? []),
+      });
+    } catch (err) {
+      console.warn("Filters request interrupted or aborted safely:", err);
     }
-
-    const unique = (values: (string | null | undefined)[]) =>
-      Array.from(new Set(values.filter(Boolean) as string[])).sort((a, b) =>
-        a.localeCompare(b)
-      );
-
-    setFilterOptions({
-      brand: unique(data?.map((d) => d.brand) ?? []),
-      fuelType: unique(data?.map((d) => d.fuel_type) ?? []),
-      transmission: unique(data?.map((d) => d.transmission) ?? []),
-      bodyType: unique(data?.map((d) => d.body_type) ?? []),
-      ownership: unique(data?.map((d) => d.ownership) ?? []),
-    });
   }
-
 
   const params = useCallback(
     () => new URLSearchParams(searchParams.toString()),
@@ -344,7 +351,6 @@ export default function Filters() {
 
     if (checked) {
       if (!current.includes(label)) p.append("priceRange", label);
-      // Pre-fill slider only if it hasn't been manually set
       if (!p.get("minPrice") && !p.get("maxPrice")) {
         p.set("minPrice", String(min));
         p.set("maxPrice", String(max));
@@ -353,20 +359,17 @@ export default function Filters() {
       const next = current.filter((v) => v !== label);
       p.delete("priceRange");
       next.forEach((v) => p.append("priceRange", v));
-      // Reset slider when no ranges remain
       if (next.length === 0) {
         p.delete("minPrice");
         p.delete("maxPrice");
       }
     }
-
     push(p);
   }
 
   function clearAllFilters() {
     router.push("/cars", { scroll: false });
   }
-
 
   const currentParams = new URLSearchParams(searchParams.toString());
   const hasActiveFilters = currentParams.toString().length > 0;
@@ -378,7 +381,6 @@ export default function Filters() {
     5000000
   );
   const selectedPriceLabels = currentParams.getAll("priceRange");
-
 
   const filterTree = (
     <div className="space-y-3">
@@ -482,12 +484,9 @@ export default function Filters() {
     </div>
   );
 
-
   return (
     <>
-      {/* Mobile trigger — hidden here; the page renders an inline pill trigger instead */}
-
-      {/* Mobile drawer */}
+      {/* Mobile Drawer (Only visible on mobile screens) */}
       <MobileFilterDrawer
         isOpen={drawerOpen}
         onClose={() => setDrawerOpen(false)}
@@ -495,8 +494,8 @@ export default function Filters() {
         {filterTree}
       </MobileFilterDrawer>
 
-      {/* Desktop sticky sidebar */}
-      <div className="hidden lg:block lg:sticky lg:top-24 lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto lg:rounded-xl">
+      {/* Desktop Sticky Sidebar (Only visible on lg screens) */}
+      <div className="hidden lg:block lg:w-full">
         {filterTree}
       </div>
     </>
