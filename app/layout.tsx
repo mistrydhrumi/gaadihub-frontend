@@ -14,12 +14,23 @@ export const metadata: Metadata = {
     template: "%s | GaadiHub",
   },
   description: "Find your best dream car for sale and rental.",
+
+  manifest: "/manifest.json",
+
+  icons: {
+    icon: "/icons/icon-192.png",
+    apple: "/icons/icon-192.png",
+  },
 };
+// export const viewport = {
+//   themeColor: "#000000",
+// };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
+
 }>) {
   return (
     <html

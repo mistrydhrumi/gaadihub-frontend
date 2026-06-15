@@ -1,6 +1,11 @@
 import { Calendar, Fuel, Gauge, UserCheck, Settings2, Users, MapPin } from "lucide-react";
+import type { Car } from "@/types/car";
 
-export default function CarOverview({ car }) {
+type Props = {
+  car: Car | null;
+};
+
+export default function CarOverview({ car }: Props) {
   if (!car) return null;
 
   const overviewItems = [
