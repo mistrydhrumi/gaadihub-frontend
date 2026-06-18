@@ -129,7 +129,7 @@ function CarsContent() {
     fetchCars(0, true);
   }, [searchParams, fetchCars]);
 
-  // ─── Infinite Scroll Observer
+  // ─── Infinite Scroll Observer (Fixed dependencies to stop re-trigger loops)
   useEffect(() => {
     const el = loaderRef.current;
     if (!el) return;
@@ -163,9 +163,11 @@ function CarsContent() {
       <Header />
 
       <main className="container mx-auto px-4 py-6">
-        <div className="flex gap-6">
-          {/* Desktop Sticky Sidebar */}
-          <aside className="hidden lg:block w-[280px] shrink-0">
+        {/* Added items-start to allow the sticky sidebar to move freely inside its parent */}
+        <div className="flex items-start gap-6">
+
+          {/* Desktop Sticky Sidebar (FIXED CLASSES) */}
+          <aside className="hidden lg:block w-[280px] shrink-0 sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-2">
             <Filters />
           </aside>
 
@@ -247,8 +249,10 @@ function CarsContent() {
         </div>
       </main>
 
-      {/* The Filters component itself handles rendering the mobile drawer cleanly! */}
-      <Filters />
+      {/* Mobile view backdrop/drawer container fallback */}
+      <div className="lg:hidden">
+        <Filters />
+      </div>
 
       {/* Back to top */}
       {showBackToTop && (
@@ -263,4 +267,4 @@ function CarsContent() {
       )}
     </>
   );
-}
+} 

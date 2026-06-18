@@ -9,8 +9,8 @@ export default function Home() {
       <Header />
       <Hero />
       <BrandsList />
-      <ElectricCarsSection/>
-      <Footer/>
+      <ElectricCarsSection />
+      <Footer />
     </>
   );
 }
