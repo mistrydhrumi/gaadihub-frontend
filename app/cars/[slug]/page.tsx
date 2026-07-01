@@ -64,7 +64,7 @@ export default function CarDetailsPage() {
 
             {/* Right Side / Price Card - shown first on mobile */}
             <div className="order-1 lg:order-2 lg:col-span-4">
-              <div className="sticky top-24">
+              <div className="sticky top-24 max-h-[calc(100vh-7rem)] ">
                 <CarPriceCard car={car} />
               </div>
             </div>
