@@ -135,3 +135,33 @@ export async function getCars(filters?: {
 
   return data;
 }
+
+export async function getCarsBySlugs(slugs: string[]) {
+  if (!slugs || slugs.length === 0) return [];
+  const { data, error } = await supabase
+    .from("cars")
+    .select("*")
+    .in("slug", slugs);
+
+  if (error) throw error;
+  return data || [];
+}
+
+export async function searchCarsForCompare(queryText: string = "", excludeSlugs: string[] = [], limit = 12) {
+  let query = supabase.from("cars").select("*").limit(limit);
+
+  if (queryText.trim()) {
+    const term = `%${queryText.trim()}%`;
+    query = query.or(`brand.ilike.${term},model.ilike.${term},variant.ilike.${term}`);
+  }
+
+  if (excludeSlugs.length > 0) {
+    // filter out already selected cars
+    query = query.not("slug", "in", `(${excludeSlugs.map((s) => `"${s}"`).join(",")})`);
+  }
+
+  const { data, error } = await query.order("created_at", { ascending: false });
+  if (error) throw error;
+  return data || [];
+}
+

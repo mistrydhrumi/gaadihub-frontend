@@ -73,11 +73,16 @@ export default function CarCard({ car }: any) {
                         <Button className="h-11 w-full bg-slate-900 text-white cursor-pointer">
                             Book Now
                         </Button>
-                        <Link href="/compare">
-                            <Button variant="outline" className="w-full mt-2 gap-2 cursor-pointer">
-                                compare
-                            </Button>
-                        </Link>
+                        <Button
+                            variant="outline"
+                            className="w-full mt-2 gap-2 cursor-pointer"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                window.location.href = `/compare?cars=${car.slug}`;
+                            }}
+                        >
+                            Compare
+                        </Button>
                     </div>
                     <div className="mt-4 flex items-center justify-between gap-2 pt-2 text-sm text-slate-500 border-t ">
                         <p className="text-xs">Is this car a good match for you?</p>
